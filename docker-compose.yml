@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  pair-detector:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+      - ./resources:/app/resources
+      - ./src:/app/src
+    networks:
+      - netw
+
+networks:
+  netw:
+    driver: bridge
