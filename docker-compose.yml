@@ -11,6 +11,8 @@ services:
       - ./src:/app/src
     networks:
       - netw
+    env_file:
+      - env.env
 
 networks:
   netw:
