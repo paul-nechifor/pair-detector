@@ -19,4 +19,4 @@ WORKDIR /app
 COPY resources/ /app/resources/
 COPY src/ /app/src/
 
-CMD ["sleep", "99999"]
+CMD ["python", "-m", "src.bot"]
