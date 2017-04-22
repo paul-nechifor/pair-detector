@@ -1,4 +1,5 @@
 from . import config, reddit, utils
+from .log import log
 
 
 class Bot(object):
@@ -8,6 +9,7 @@ class Bot(object):
         self.reddit_handler = reddit.RedditHandler(self.config)
 
     def start(self):
+        log('bot started')
         utils.make_dirs(
             self.config.found_dir,
             self.config.found_crop_dir,
@@ -17,10 +19,10 @@ class Bot(object):
             self.handle_submission(s)
 
     def handle_submission(self, submission):
-        print 'new submission'
+        log('new submission')
         with submission:
             if submission.image.dets:
-                print 'saving', submission.uuid
+                log('saving %s', submission.uuid)
                 submission.copy_to_found()
 
 

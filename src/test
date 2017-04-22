@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+
+main() {
+  cd "$root"
+  find src -name '*.pyc' -delete
+  python -m compileall -q src
+
+  tput setaf 1
+  flake8 --max-complexity 7 src
+  tput sgr0
+
+  green src/tests/test_*.py -vv
+  nosetests --with-coverage --cover-branches --cover-erase --cover-package=src
+  coverage -rm
+
+  find src -name '*.pyc' -delete
+}
+
+main "$@"

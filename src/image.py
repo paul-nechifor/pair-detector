@@ -32,11 +32,12 @@ class Image(object):
         det_width = det.right() - det.left()
         det_height = det.bottom() - det.top()
         image_width, image_height = self.image.size
-        if det_width / image_width < self.config.min_image_width:
-            return False
-        if det_height / image_height < self.config.min_image_height:
-            return False
-        return True
+        return all([
+            image_width >= self.config.min_image_width,
+            image_height >= self.config.min_image_height,
+            float(det_width) / image_width >= self.config.min_image_ratio_x,
+            float(det_height) / image_height >= self.config.min_image_ratio_y,
+        ])
 
     @property
     def image(self):

@@ -19,6 +19,13 @@ Then run::
 
     docker-compose up
 
+Tests
+-----
+
+Run with::
+
+    docker-compose exec pair-detector src/test
+
 License
 -------
 
