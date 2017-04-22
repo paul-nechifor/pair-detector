@@ -28,6 +28,18 @@ class Image(object):
 
         return filter(self._check_det, dets)
 
+    @property
+    def serializable_dets(self):
+        return [
+            {
+                'left': d.left(),
+                'right': d.right(),
+                'bottom': d.bottom(),
+                'top': d.top(),
+            }
+            for d in self.dets
+        ]
+
     def _check_det(self, det):
         det_width = det.right() - det.left()
         det_height = det.bottom() - det.top()

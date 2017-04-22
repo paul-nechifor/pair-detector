@@ -54,6 +54,11 @@ class RedditSubmission(object):
     def copy_to_found(self):
         new_path = join(self.config.found_dir, self.uuid)
         shutil.copyfile(self.tmp_path, new_path)
+        data = {
+            'reddit': utils.to_json_data(self.submission),
+            'dets': self.image.serializable_dets,
+        }
+        utils.write_json(new_path + '.json', data)
 
     def __enter__(self):
         self.tmp_path = join(self.config.tmp_dir, self.uuid)
