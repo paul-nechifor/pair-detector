@@ -1,3 +1,8 @@
+This repository has been moved to `gitlab.com/paul-nechifor/pair-detector <http://gitlab.com/paul-nechifor/pair-detector>`_.
+============================================================================================================================
+
+Old readme:
+
 Pair Detector
 =============
 
